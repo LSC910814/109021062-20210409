@@ -3,7 +3,7 @@ import time
 import random
 import csv
 from bs4 import BeautifulSoup
-URL = "https://www.majortests.com/word-lists/word-list-{}.html"
+URL = "https://www.majortests.com/word-lists/word-list-{0:02d}.html"
 
 
 def generate_urls(url, start_page, end_page):
@@ -23,7 +23,7 @@ def parse_html(html_str):
 
 def get_word(soup,file):
     words = []
-    count = 0
+    count = 00
     for wordlist_table in soup.find_all(class_="wordlist"):
         count += 1
         for word_entry in wordlist_table.find_all("tr"):
@@ -45,8 +45,8 @@ def web_scraping_bot(urls):
             soup = parse_html(r.text)
             words = get_word(soup, file)
             eng_words = eng_words + words
-            print("wating 5 seconds...")
-            time.sleep (random.uniform(1, 5))
+            print("wating 3 seconds...")
+            time.sleep (random.uniform(1, 3))
         else:
             print("HTTP request error!!")
     return eng_words
