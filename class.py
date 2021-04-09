@@ -3,7 +3,7 @@ import time
 import random
 import csv
 from bs4 import BeautifulSoup
-URL = "https://www.majortests.com/word-lists/word-list-0{0}.html"
+URL = "https://www.majortests.com/word-lists/word-list-{}.html"
 
 
 def generate_urls(url, start_page, end_page):
@@ -40,7 +40,7 @@ def web_scraping_bot(urls):
     for url in urls:
         file = url.split ("/")[-1]
         print("catching:",file," web data...")
-        r=get_resource(url)
+        r = get_resource(url)
         if r.status_code == requests.codes.ok:
             soup = parse_html(r.text)
             words = get_word(soup, file)
@@ -58,7 +58,7 @@ def save_to_csv(words, file):
             writer.writerow(word)
 
 if (__name__ == "__main__"):
-    urls =generate_urls(URL, 1, 10)
+    urls =generate_urls(URL, 1, 11)
     eng_words = web_scraping_bot(urls)
     for item in eng_words:
         print(item)
